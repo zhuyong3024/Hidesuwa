@@ -27,7 +27,6 @@ env/
 ENV/
 .env
 .venv
-env/
 opendpd_env/
 
 # Jupyter Notebooks
