@@ -4,7 +4,7 @@ Description: Quantized GRU (QGRU) backbone
 
 import torch
 from torch import nn
-from quant import Sqrt, Pow
+from quant.modules.ops import Sqrt, Pow
 
 class QGRU(nn.Module):
     def __init__(self, hidden_size, output_size, num_layers, bidirectional=False, batch_first=True,

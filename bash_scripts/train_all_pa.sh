@@ -27,9 +27,9 @@ seed_values=(0 1 2 3 4)
 if [[ -n "${SEEDS:-}" ]]; then
   IFS=',' read -ra seed_values <<< "${SEEDS}"
 fi
-PA_backbone=(gru vdlstm rvtdcnn gmp)
-PA_hidden_size=(11 8 12 8)
-PA_num_layers=(1 1 1 1)
+PA_backbone=(dgru gru vdlstm rvtdcnn gmp)
+PA_hidden_size=(8 11 8 12 8)
+PA_num_layers=(1 1 1 1 1)
 
 frame_length=${FRAME_LENGTH:-50}
 frame_stride=${FRAME_STRIDE:-1}

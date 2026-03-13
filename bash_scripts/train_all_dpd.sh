@@ -44,9 +44,9 @@ fi
 PA_backbone=dgru
 PA_hidden_size=8
 PA_num_layers=1
-DPD_backbone=(dgru fcn gru lstm)
-DPD_hidden_size=(8 20 11 9)
-DPD_num_layers=(1 2 1 1)
+DPD_backbone=(dgru rvtdcnn gru lstm)
+DPD_hidden_size=(8 12 11 9)
+DPD_num_layers=(1 1 1 1)
 
 run_step() {
   local step=$1

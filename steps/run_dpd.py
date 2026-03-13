@@ -3,6 +3,7 @@ __license__ = "Apache-2.0 License"
 __email__ = "yizhuo.wu@tudelft.nl, chang.gao@tudelft.nl"
 
 import os
+import glob
 import pandas as pd
 import torch
 import models as model
@@ -56,7 +57,21 @@ def main(proj: Project):
     path_dpd_model = os.path.join('save', proj.dataset_name, 'train_dpd', pa_model_id.split('_P_')[0], dpd_model_id + '.pt')
 
     if proj.args.quant:
-        path_dpd_model = os.path.join('save', proj.dataset_name, 'train_dpd', pa_model_id.split('_P_')[0], proj.args.quant_dir_label, dpd_model_id + '.pt')
+        #path_dpd_model = os.path.join('save', proj.dataset_name, 'train_dpd', pa_model_id.split('_P_')[0], proj.args.quant_dir_label, dpd_model_id + '.pt')
+        model_dir = os.path.join(
+            "save",
+            proj.dataset_name,
+            "train_dpd",
+            proj.pretrained_model,
+            proj.quant_dir_label
+        )
+
+        model_list = glob.glob(os.path.join(model_dir, "*.pt"))
+
+        if len(model_list) == 0:
+            raise RuntimeError(f"No model found in {model_dir}")
+
+        path_dpd_model = model_list[0]
         print("::: Loading Quantized DPD Model: ", path_dpd_model)
     net_dpd.load_state_dict(torch.load(path_dpd_model))
 
